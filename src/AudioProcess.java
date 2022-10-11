@@ -1,6 +1,7 @@
 import javax.sound.sampled.*;
 import java.io.*;
 import java.nio.file.Files;
+import java.util.Random;
 import java.util.Scanner;
 
 public class AudioProcess {
@@ -103,6 +104,44 @@ public class AudioProcess {
         }
     }
 
+    public PuzzleGrid puzzleGenerator() {
+        Solver solv = new Solver();
+        PuzzleGen pgen = new PuzzleGen();
+        // PuzzleGrid grid = new PuzzleGrid();
+        Random r = new Random();
+        int n = r.nextInt(60);
+        PuzzleGrid grid = pgen.generate(n);
+        solv.solve(grid);
+        return grid;
+    }
+
+    public int[][] gridTaker(PuzzleGrid grid) {
+        String GRID = grid.toString();
+        int[][] puzzle = new int[81][81];
+        int a=0, b=0;
+        int n=GRID.length();
+
+        for(int i=0;i<n;i++)
+        {
+            if(GRID.charAt(i)=='\n')
+            {
+                a++;
+                b=0;
+                System.out.print(" ");
+                continue;
+            }
+            int x = (int) GRID.charAt(i) - 48;
+            if(x!=-16) {
+                puzzle[a][b] = (int) GRID.charAt(i) - 48;
+                System.out.print(puzzle[a][b]);
+                b++;
+            }
+        }
+        puzzle[a][b] = (int) GRID.charAt(n-2) - 48;
+        System.out.println();
+        return puzzle;
+    }
+
     public void encrypt(String f) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         File file = new File(f);
         //AudioInputStream ai = AudioSystem.getAudioInputStream((InputStream) file.toPath());
@@ -202,6 +241,8 @@ public class AudioProcess {
         x.audioFrames(f);
         x.audioRead(f);
         x.audioToByte(f);
+        PuzzleGrid grid = x.puzzleGenerator();
+        x.gridTaker(grid);
         x.encrypt("./binary.crypt");
         x.decrypt("./test1.wav");
     }
