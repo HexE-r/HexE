@@ -37,7 +37,8 @@ public class AudioProcess {
             e.printStackTrace();
         }
     }
-    public void audioRead(String f) {
+    public int[] audioRead(String f) {
+        int[] metadata = new int[3];
         try
         {
             // Open the wav file specified as the first argument
@@ -45,6 +46,10 @@ public class AudioProcess {
 
             // Display information about the wav file
             wavFile.display();
+
+            metadata[0] = wavFile.getNumChannels();
+            metadata[1] = wavFile.getValidBits();
+            metadata[2] = (int)wavFile.getSampleRate();
 
             // Get the number of audio channels in the wav file
             int numChannels = wavFile.getNumChannels();
@@ -78,6 +83,7 @@ public class AudioProcess {
         {
             System.err.println(e);
         }
+        return metadata;
     }
 
     public void audioToByte(String f) {
@@ -143,7 +149,7 @@ public class AudioProcess {
         return puzzle;
     }
 
-    public void encrypt(String f) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void encrypt(String f, int Channel, int SampleRate, int Val) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         File file = new File(f);
         //AudioInputStream ai = AudioSystem.getAudioInputStream((InputStream) file.toPath());
         //Clip clip = AudioSystem.getClip();
@@ -154,7 +160,8 @@ public class AudioProcess {
         }
         ByteArrayInputStream oInstream = new ByteArrayInputStream(content);
         AudioFileFormat.Type afType = AudioFileFormat.Type.WAVE;
-        AudioFormat adfmt = new AudioFormat(8000.0f, 16, 2, true , true);
+        float Ch = SampleRate + 1.0f;
+        AudioFormat adfmt = new AudioFormat(Ch, Val, Channel, true , true);
         try {
             File a = new File("./test1.wav");
             AudioInputStream ais = new AudioInputStream(oInstream, adfmt, content.length/adfmt.getFrameSize());
@@ -166,7 +173,7 @@ public class AudioProcess {
         }
     }
 
-    public void decrypt(String f) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void decrypt(String f, int Channel, int SampleRate, int Val) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         File file = new File(f);
         //AudioInputStream ai = AudioSystem.getAudioInputStream((InputStream) file.toPath());
         //Clip clip = AudioSystem.getClip();
@@ -177,7 +184,8 @@ public class AudioProcess {
         }
         ByteArrayInputStream oInstream = new ByteArrayInputStream(content);
         AudioFileFormat.Type afType = AudioFileFormat.Type.WAVE;
-        AudioFormat adfmt = new AudioFormat(8000.0f, 16, 2, true , true);
+        float Ch = SampleRate + 1.0f;
+        AudioFormat adfmt = new AudioFormat(Ch, Val, Channel, true , true);
         try {
             File a = new File("./test2.wav");
             AudioInputStream ais = new AudioInputStream(oInstream, adfmt, content.length/adfmt.getFrameSize());
@@ -240,14 +248,15 @@ public class AudioProcess {
         PinataIPFS ipfs = new PinataIPFS();
         System.out.println("Enter file path of audio:");
         String f = sc.next();
+        int[] arr = new int[3];
         x.audioFrames(f);
-        x.audioRead(f);
+        arr = x.audioRead(f);
         x.audioToByte(f);
         PuzzleGrid grid = x.puzzleGenerator();
         x.gridTaker(grid);
-        x.encrypt("./binary.crypt");
-        x.decrypt("./test1.wav");
-        ipfs.TestAPI();
+        x.encrypt("./binary.crypt", arr[0], arr[2], arr[1]);
+        x.decrypt("./test1.wav", arr[0], arr[2], arr[1]);
+        ipfs.sendFile("./test1.wav");
         sc.close();
     }
 }
