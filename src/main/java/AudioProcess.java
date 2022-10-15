@@ -236,6 +236,7 @@ public class AudioProcess {
     public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         Scanner sc = new Scanner(System.in);
         AudioProcess x = new AudioProcess();
+        PinataIPFS ipfs = new PinataIPFS();
         System.out.println("Enter file path of audio:");
         String f = sc.next();
         x.audioFrames(f);
@@ -245,5 +246,6 @@ public class AudioProcess {
         x.gridTaker(grid);
         x.encrypt("./binary.crypt");
         x.decrypt("./test1.wav");
+        ipfs.TestAPI();
     }
 }
