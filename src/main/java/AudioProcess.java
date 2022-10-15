@@ -97,6 +97,7 @@ public class AudioProcess {
             OutputStream os = new FileOutputStream(file);
             os.write(audioBytes);
             os.close();
+            in.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -247,5 +248,6 @@ public class AudioProcess {
         x.encrypt("./binary.crypt");
         x.decrypt("./test1.wav");
         ipfs.TestAPI();
+        sc.close();
     }
 }
