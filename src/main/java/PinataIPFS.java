@@ -56,6 +56,5 @@ public class PinataIPFS {
         System.out.print("Could not upload file to Pinata IPFS");
         e.printStackTrace();
       }
-
     }
 }
