@@ -1,4 +1,4 @@
-# Project-Hexe
+# Project-HexE
 
 An audio encryption and decryption service
 
