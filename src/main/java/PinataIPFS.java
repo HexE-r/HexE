@@ -75,5 +75,6 @@ public class PinataIPFS {
       }
       fis.close();
       bis.close();
+      System.out.println("File Downloaded from IPFS");
   }
 }

@@ -2,7 +2,6 @@ import javax.sound.sampled.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.Random;
-import java.util.Scanner;
 
 public class AudioProcess {
     // Long[] binStore = new Long[999999];
@@ -147,6 +146,52 @@ public class AudioProcess {
         puzzle[a][b] = (int) GRID.charAt(n-2) - 48;
         System.out.println();
         return puzzle;
+    }
+
+    public void gridToFile(int[][] grid) {
+        try {
+            FileWriter writer = new FileWriter("puzzGrid.txt");
+            for(int i=0; i<9; i++) {
+                for(int j=0; j<9; j++) {
+                    writer.write(grid[i][j]);
+                }
+                writer.write("\n");
+            }
+            writer.close();
+            System.out.println("Puzzle Grid saved under puzzGrid.txt");
+        }
+        catch (IOException e) {
+            System.err.println("Error occured");
+            e.printStackTrace();
+        }
+    }
+
+    public int[][] gridReader(String f) throws FileNotFoundException {
+        int[][] GRID = new int[9][9];
+        FileReader reader = new FileReader(f);
+        int i, j=0, k=0;
+        try {
+            while((i=reader.read())!=-1) {
+                if(k==9) {
+                    k = 0;
+                    j++;
+                }
+                char c = (char) i;
+                if(c == '\n')
+                {
+                    continue;
+                }
+                int x = c - '0';
+                GRID[j][k] = x;
+                k++;
+                System.out.print(k);
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("File import successful");
+        return GRID;
     }
 
     public int[][] keyGen(int[][] grid, int n) {
@@ -318,13 +363,199 @@ public class AudioProcess {
         return miniGrid;
     }
 
+    public int[][] keyGenDec(int[][] grid, int n, long unixT) {
+        int[][] miniGrid = new int[n][n];
+        long unixTime = unixT;
+        System.out.println("UNIX Timestamp: " + unixTime);
+        int p = 0;
+        long digit = 0;
+        long d1 = unixTime % 10;
+        while(unixTime > 0) {
+            digit = unixTime % 10;
+            p += digit;
+            unixTime /= 10;
+        }
+        //Random rand = new Random();
+        int t = p % 9;
+        int u = p % 3;
+        int u1 = (int) d1 % 3;
+        int grd = 0;
+        if(u == 0 && u1 == 0)
+        {
+            grd = 1;
+        }
+        else if(u == 0 && u1 == 1)
+        {
+            grd = 2;
+        }
+        else if(u == 0 && u1 == 2)
+        {
+            grd = 3;
+        }
+        else if(u == 1 && u1 == 0)
+        {
+            grd = 4;
+        }
+        else if(u == 1 && u1 == 1)
+        {
+            grd = 5;
+        }
+        else if(u == 1 && u1 == 2)
+        {
+            grd = 6;
+        }
+        else if(u == 2 && u1 == 0)
+        {
+            grd = 7;
+        }
+        else if(u == 2 && u1 == 1)
+        {
+            grd = 8;
+        }
+        else {
+            grd = 9;
+        }
+        int k1=0, k2=0;
+        switch (grd) {
+            case 1:
+                for(int i=0;i<3;i++)
+                {
+                    for(int j=0;j<3;j++)
+                    {
+                        miniGrid[k1][k2] = grid[i][j] * t;
+                        k2++;
+                    }
+                    k1++;
+                    k2=0;
+                }
+                break;
+            case 2:
+                for(int i=0;i<3;i++)
+                {
+                    for(int j=3;j<6;j++)
+                    {
+                        miniGrid[k1][k2] = grid[i][j] * t;
+                        k2++;
+                    }
+                    k1++;
+                    k2=0;
+                }
+                break;
+            case 3:
+                for(int i=0;i<3;i++)
+                {
+                    for(int j=6;j<9;j++)
+                    {
+                        miniGrid[k1][k2] = grid[i][j] * t;
+                        k2++;
+                    }
+                    k1++;
+                    k2=0;
+                }
+                break;
+            case 4:
+                for(int i=3;i<6;i++)
+                {
+                    for(int j=0;j<3;j++)
+                    {
+                        miniGrid[k1][k2] = grid[i][j] * t;
+                        k2++;
+                    }
+                    k1++;
+                    k2=0;
+                }
+                break;
+            case 5:
+                for(int i=3;i<6;i++)
+                {
+                    for(int j=3;j<6;j++)
+                    {
+                        miniGrid[k1][k2] = grid[i][j] * t;
+                        k2++;
+                    }
+                    k1++;
+                    k2=0;
+                }
+                break;
+            case 6:
+                for(int i=3;i<6;i++)
+                {
+                    for(int j=6;j<9;j++)
+                    {
+                        miniGrid[k1][k2] = grid[i][j] * t;
+                        k2++;
+                    }
+                    k1++;
+                    k2=0;
+                }
+                break;
+            case 7:
+                for(int i=6;i<9;i++)
+                {
+                    for(int j=0;j<3;j++)
+                    {
+                        miniGrid[k1][k2] = grid[i][j] * t;
+                        k2++;
+                    }
+                    k1++;
+                    k2=0;
+                }
+                break;
+            case 8:
+                for(int i=6;i<9;i++)
+                {
+                    for(int j=3;j<6;j++)
+                    {
+                        miniGrid[k1][k2] = grid[i][j] * t;
+                        k2++;
+                    }
+                    k1++;
+                    k2=0;
+                }
+                break;
+            case 9:
+                for(int i=6;i<9;i++)
+                {
+                    for(int j=6;j<9;j++)
+                    {
+                        miniGrid[k1][k2] = grid[i][j] * t;
+                        k2++;
+                    }
+                    k1++;
+                    k2=0;
+                }
+                break;
+            default:
+                System.err.println("Invalid GRID. Please try again");
+                break;
+        }
+        return miniGrid;
+    }
+
     public String keyGenBinary(int[][] grid) {
         int[][] miniGrid = keyGen(grid, 3);
         String binKey = null;
         StringBuilder binMod = new StringBuilder();
 
-        for(int i=0;i<2;i++) {
-            for(int j=0;j<2;j++) {
+        for(int i=0;i<3;i++) {
+            for(int j=0;j<3;j++) {
+                System.out.print(miniGrid[i][j] + "\t");
+                binMod.append(Integer.toBinaryString(miniGrid[i][j]));
+            }
+            System.out.println();
+        }
+        System.out.println(binMod);
+        binKey = binMod.toString();
+        return binKey;
+    }
+
+    public String keyGenBinaryDec(int[][] grid, long unixT) {
+        int[][] miniGrid = keyGenDec(grid, 3, unixT);
+        String binKey = null;
+        StringBuilder binMod = new StringBuilder();
+
+        for(int i=0;i<3;i++) {
+            for(int j=0;j<3;j++) {
                 System.out.print(miniGrid[i][j] + "\t");
                 binMod.append(Integer.toBinaryString(miniGrid[i][j]));
             }
@@ -372,13 +603,13 @@ public class AudioProcess {
         }
     }
 
-    public void decrypt(String f, int Channel, int SampleRate, int Val, int[][] grid) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void decrypt(String f, int Channel, int SampleRate, int Val, int[][] grid, long unixT) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         File file = new File(f);
         //AudioInputStream ai = AudioSystem.getAudioInputStream((InputStream) file.toPath());
         //Clip clip = AudioSystem.getClip();
         //clip.open(ai);
         byte[] content = Files.readAllBytes(file.toPath());
-        String key = keyGenBinary(grid);
+        String key = keyGenBinaryDec(grid, unixT);
         int len = key.length();
         int j = 0;
         for(int i=0; i<content.length; i++) {
@@ -452,23 +683,5 @@ public class AudioProcess {
         {
             System.err.println(e);
         }
-    }
-
-    public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-        Scanner sc = new Scanner(System.in);
-        AudioProcess x = new AudioProcess();
-        PinataIPFS ipfs = new PinataIPFS();
-        System.out.println("Enter file path of audio:");
-        String f = sc.next();
-        int[] arr = new int[3];
-        x.audioFrames(f);
-        arr = x.audioRead(f);
-        x.audioToByte(f);
-        PuzzleGrid grid = x.puzzleGenerator();
-        int[][] puzzGrid = x.gridTaker(grid);
-        x.encrypt("./binary.crypt", arr[0], arr[2], arr[1], puzzGrid);
-        x.decrypt("./test1.wav", arr[0], arr[2], arr[1], puzzGrid);
-        ipfs.sendFile("./test1.wav");
-        sc.close();
     }
 }
