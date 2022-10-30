@@ -1,5 +1,6 @@
 import pinata.Pinata;
 import java.io.*;
+import java.net.URL;
 
 import pinata.PinataException;
 import pinata.PinataResponse;
@@ -60,4 +61,19 @@ public class PinataIPFS {
         e.printStackTrace();
       }
     }
+
+    public void downloadUsingStream(String hash) throws IOException{
+      String urlStr = "https://cloudflare-ipfs.com/ipfs/" + hash;
+      URL url = new URL(urlStr);
+      BufferedInputStream bis = new BufferedInputStream(url.openStream());
+      FileOutputStream fis = new FileOutputStream("output.wav");
+      byte[] buffer = new byte[1024];
+      int count=0;
+      while((count = bis.read(buffer,0,1024)) != -1)
+      {
+          fis.write(buffer, 0, count);
+      }
+      fis.close();
+      bis.close();
+  }
 }
