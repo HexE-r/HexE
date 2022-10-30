@@ -3,17 +3,18 @@
 An audio encryption and decryption service
 
 ## Libraries used
- - Java Core
- - PinataIPFS Java API
- - Web3 IPFS (Node.js) API
+
+- Java Core
+- PinataIPFS Java API
 
 ## Languages used
- - Java
- - JavaScript
+
+- Java
 
 ## Frameworks
- - Maven
- - NodeJS
+
+- Maven
 
 ## License
+
 Apache-2.0 License

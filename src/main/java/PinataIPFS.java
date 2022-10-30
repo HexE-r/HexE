@@ -40,7 +40,7 @@ public class PinataIPFS {
 
     public void sendFile(String f) {
       File f1 = new File(f);
-      
+      JSONParse x = new JSONParse();
       Pinata pinata = new Pinata("3913db0a3955d0cd6449", "465097e85c4f810204f7149ab3fe3b58843cbe2472d7b3a41a7d8389e123663d");
       try {
         pinata.testAuthentication();
@@ -50,8 +50,11 @@ public class PinataIPFS {
       }
       System.out.print("Commencing file upload via Pinata API...\n");
       try {
-        pinata.pinFileToIpfs(f1);
+        PinataResponse r = pinata.pinFileToIpfs(f1);
         System.out.println("File uploaded to Pinata IPFS");
+        String res = r.getBody();
+        String res1 = x.parseData(res);
+        System.out.println("Pinned IPFS Hash: " + res1);
       } catch (Exception e) {
         System.out.print("Could not upload file to Pinata IPFS");
         e.printStackTrace();
