@@ -607,7 +607,7 @@ public class AudioProcess {
                 System.out.print(miniGrid[i][j] + "\t");
                 binMod.append(Integer.toBinaryString(miniGrid[i][j]));
             }
-            System.out.println();
+            //System.out.println();
         }
         System.out.println(binMod);
         binKey = binMod.toString();
@@ -615,38 +615,44 @@ public class AudioProcess {
     }
 
     public void encrypt(String f, int Channel, int SampleRate, int Val, int[][] grid) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-        File file = new File(f);
+        //File file = new File(f);
         //AudioInputStream ai = AudioSystem.getAudioInputStream((InputStream) file.toPath());
         //Clip clip = AudioSystem.getClip();
         //clip.open(ai);
-        byte[] content = Files.readAllBytes(file.toPath());
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        BufferedInputStream in = new BufferedInputStream(new FileInputStream(f));
+
+        int read;
+        byte[] buff = new byte[1024];
+        while ((read = in.read(buff)) > 0)
+        {
+            out.write(buff, 0, read);
+        }
+        out.flush();
+        byte[] content = out.toByteArray();
         String key = keyGenBinary(grid);
         System.out.println(key);
         int len = key.length();
         int j = 0;
-        for(int i=0; i<content.length; i++) {
+        for(int i=40; i<content.length; i++) {
             if(j == len-1)
             {
                 j = 0;
             }
-            if(i%3 == 0)
-            {
-                j++;
-            }
             char c = key.charAt(j);
             int keyVal = c - '0';
             //System.out.print(keyVal);
-            content[i] = (byte) (content[i] ^ keyVal);
+            content[i] = (byte) (content[i] ^ (keyVal*5000));
+            if(i%10 == 0)
+            {
+                j++;
+            }
+            //System.out.print(content[i]);
         }
-        ByteArrayInputStream oInstream = new ByteArrayInputStream(content);
-        AudioFileFormat.Type afType = AudioFileFormat.Type.WAVE;
-        float Ch = SampleRate;
-        AudioFormat adfmt = new AudioFormat(Ch, Val, Channel, true , true);
         try {
-            File a = new File("./test1.wav");
-            AudioInputStream ais = new AudioInputStream(oInstream, adfmt, content.length/adfmt.getFrameSize());
-            int W = AudioSystem.write(ais, afType, a);
-            System.out.println(W);
+            Path a = Paths.get("./test1.wav");
+            Files.write(a, content);
+            //System.out.println(W);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -654,40 +660,44 @@ public class AudioProcess {
     }
 
     public void decrypt(String f, int Channel, int SampleRate, int Val, int[][] grid, long unixT) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-        File file = new File(f);
+        //File file = new File(f);
         //AudioInputStream ai = AudioSystem.getAudioInputStream((InputStream) file.toPath());
         //Clip clip = AudioSystem.getClip();
         //clip.open(ai);
          
-        byte[] content = Files.readAllBytes(file.toPath());
-        /*
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        BufferedInputStream in = new BufferedInputStream(new FileInputStream(f));
+
+        int read;
+        byte[] buff = new byte[1024];
+        while ((read = in.read(buff)) > 0)
+        {
+            out.write(buff, 0, read);
+        }
+        out.flush();
+        byte[] content = out.toByteArray();
         String key = keyGenBinaryDec(grid, unixT);
         System.out.println(key);
         int len = key.length();
         int j = 0;
-        for(int i=0; i<content.length; i++) {
+        for(int i=40; i<content.length; i++) {
             if(j == len-1)
             {
                 j = 0;
             }
-            if(i%3 == 0)
+            char c = key.charAt(j);
+            int keyVal = c - '0';
+            content[i] = (byte) (content[i] ^ (keyVal*5000));
+            if(i%10 == 0)
             {
                 j++;
             }
-            char c = key.charAt(j);
-            int keyVal = c - '0';
-            content[i] = (byte) (content[i] ^ keyVal);
+            //System.out.print(content[i]);
         }
-        */
-        ByteArrayInputStream oInstream = new ByteArrayInputStream(content);
-        AudioFileFormat.Type afType = AudioFileFormat.Type.WAVE;
-        float Ch = SampleRate;
-        AudioFormat adfmt = new AudioFormat(Ch, Val, Channel, true , true);
         try {
-            File a = new File("./test2.wav");
-            AudioInputStream ais = new AudioInputStream(oInstream, adfmt, content.length/adfmt.getFrameSize());
-            int W = AudioSystem.write(ais, afType, a);
-            System.out.println(W);
+            Path a = Paths.get("./test2.wav");
+            Files.write(a, content);
+            //System.out.println(W);
         }
         catch (Exception e) {
             e.printStackTrace();
