@@ -1,7 +1,12 @@
 import javax.sound.sampled.*;
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class AudioProcess {
     // Long[] binStore = new Long[999999];
@@ -110,6 +115,31 @@ public class AudioProcess {
         }
     }
 
+    public void audioToByteDec(String f) {
+        try {
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            BufferedInputStream in = new BufferedInputStream(new FileInputStream(f));
+
+            int read;
+            byte[] buff = new byte[1024];
+            while ((read = in.read(buff)) > 0)
+            {
+                out.write(buff, 0, read);
+            }
+            out.flush();
+            byte[] audioBytes = out.toByteArray();
+            File file = new File("./binary1.crypt");
+            OutputStream os = new FileOutputStream(file);
+            os.write(audioBytes);
+            os.close();
+            in.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public PuzzleGrid puzzleGenerator() {
         Solver solv = new Solver();
         PuzzleGen pgen = new PuzzleGen();
@@ -133,29 +163,35 @@ public class AudioProcess {
             {
                 a++;
                 b=0;
-                System.out.print(" ");
+                //System.out.print(" ");
                 continue;
             }
             int x = (int) GRID.charAt(i) - 48;
             if(x!=-16) {
                 puzzle[a][b] = (int) GRID.charAt(i) - 48;
-                System.out.print(puzzle[a][b]);
+                //System.out.print(puzzle[a][b]);
                 b++;
             }
         }
         puzzle[a][b] = (int) GRID.charAt(n-2) - 48;
-        System.out.println();
+        for(int i=0;i<9;i++) {
+            for(int j=0;j<9;j++) {
+                System.out.print(puzzle[i][j]);
+            }
+            System.out.println();
+        }
         return puzzle;
     }
 
     public void gridToFile(int[][] grid) {
         try {
-            FileWriter writer = new FileWriter("puzzGrid.txt");
+            PrintWriter writer = new PrintWriter(new File("puzzGrid.txt"));
             for(int i=0; i<9; i++) {
                 for(int j=0; j<9; j++) {
-                    writer.write(grid[i][j]);
+                    writer.print(grid[i][j]);
+                    writer.print(" ");
                 }
-                writer.write("\n");
+                writer.println();
             }
             writer.close();
             System.out.println("Puzzle Grid saved under puzzGrid.txt");
@@ -166,30 +202,40 @@ public class AudioProcess {
         }
     }
 
-    public int[][] gridReader(String f) throws FileNotFoundException {
+    public int[][] gridReader(String f) throws IOException {
         int[][] GRID = new int[9][9];
-        FileReader reader = new FileReader(f);
-        int i, j=0, k=0;
-        try {
-            while((i=reader.read())!=-1) {
-                if(k==9) {
-                    k = 0;
-                    j++;
-                }
-                char c = (char) i;
-                if(c == '\n')
-                {
-                    continue;
-                }
-                int x = c - '0';
-                GRID[j][k] = x;
-                k++;
-                System.out.print(k);
+        Path file = Paths.get(f);
+        Scanner scan = new Scanner(file);
+        ArrayList<ArrayList<Integer>> a = new ArrayList<ArrayList<Integer>>();
+        while(scan.hasNextLine())
+        {
+            Scanner colReader = new Scanner(scan.nextLine());
+            ArrayList col = new ArrayList();
+            while(colReader.hasNextInt())
+            {
+                col.add(colReader.nextInt());
             }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            a.add(col);
         }
+
+        int x=0,y=0;
+        for(int i=0;i<a.size();i++) {
+            for(int j=0;j<a.get(i).size();j++)
+            {
+                GRID[x][y] = a.get(i).get(j);
+                y++;
+            }
+            x++;
+            y=0;
+        }
+        
+        for(int i=0;i<9;i++) {
+            for(int j=0;j<9;j++) {
+                System.out.print(GRID[i][j]);
+            }
+            System.out.println();
+        }
+        scan.close();
         System.out.println("File import successful");
         return GRID;
     }
@@ -211,6 +257,7 @@ public class AudioProcess {
         int u = p % 3;
         int u1 = (int) d1 % 3;
         int grd = 0;
+        System.out.print("t: "+ t +" u: "+u+" u1: "+u1+"\n");
         if(u == 0 && u1 == 0)
         {
             grd = 1;
@@ -380,6 +427,7 @@ public class AudioProcess {
         int u = p % 3;
         int u1 = (int) d1 % 3;
         int grd = 0;
+        System.out.print("t: "+ t +" u: "+u+" u1: "+u1+"\n");
         if(u == 0 && u1 == 0)
         {
             grd = 1;
@@ -573,6 +621,7 @@ public class AudioProcess {
         //clip.open(ai);
         byte[] content = Files.readAllBytes(file.toPath());
         String key = keyGenBinary(grid);
+        System.out.println(key);
         int len = key.length();
         int j = 0;
         for(int i=0; i<content.length; i++) {
@@ -586,11 +635,12 @@ public class AudioProcess {
             }
             char c = key.charAt(j);
             int keyVal = c - '0';
+            //System.out.print(keyVal);
             content[i] = (byte) (content[i] ^ keyVal);
         }
         ByteArrayInputStream oInstream = new ByteArrayInputStream(content);
         AudioFileFormat.Type afType = AudioFileFormat.Type.WAVE;
-        float Ch = SampleRate + 1.0f;
+        float Ch = SampleRate;
         AudioFormat adfmt = new AudioFormat(Ch, Val, Channel, true , true);
         try {
             File a = new File("./test1.wav");
@@ -608,8 +658,11 @@ public class AudioProcess {
         //AudioInputStream ai = AudioSystem.getAudioInputStream((InputStream) file.toPath());
         //Clip clip = AudioSystem.getClip();
         //clip.open(ai);
+         
         byte[] content = Files.readAllBytes(file.toPath());
+        /*
         String key = keyGenBinaryDec(grid, unixT);
+        System.out.println(key);
         int len = key.length();
         int j = 0;
         for(int i=0; i<content.length; i++) {
@@ -625,9 +678,10 @@ public class AudioProcess {
             int keyVal = c - '0';
             content[i] = (byte) (content[i] ^ keyVal);
         }
+        */
         ByteArrayInputStream oInstream = new ByteArrayInputStream(content);
         AudioFileFormat.Type afType = AudioFileFormat.Type.WAVE;
-        float Ch = SampleRate + 1.0f;
+        float Ch = SampleRate;
         AudioFormat adfmt = new AudioFormat(Ch, Val, Channel, true , true);
         try {
             File a = new File("./test2.wav");

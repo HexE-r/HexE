@@ -33,7 +33,7 @@ public class HexE {
                 grid = x.puzzleGenerator();
                 puzzGrid = x.gridTaker(grid);
                 x.gridToFile(puzzGrid);
-                x.encrypt("./binary.crypt", arr[0], arr[2], arr[1], puzzGrid);
+                x.encrypt(f, arr[0], arr[2], arr[1], puzzGrid);
                 System.out.println("Audio encrypted successfully");
                 break;
             case 2:
@@ -41,7 +41,7 @@ public class HexE {
                 f = sc.next();
                 x.audioFrames(f);
                 arr = x.audioRead(f);
-                x.audioToByte(f);
+                x.audioToByteDec(f);
                 System.out.println("Enter file path for puzzle:");
                 f1 = sc.next();
                 puzzGrid = x.gridReader(f1);
@@ -69,13 +69,13 @@ public class HexE {
                 f = "./output.wav";
                 x.audioFrames(f);
                 arr = x.audioRead(f);
-                x.audioToByte(f);
+                x.audioToByteDec(f);
                 System.out.println("Enter file path for puzzle:");
                 f1 = sc.next();
                 puzzGrid = x.gridReader(f1);
                 System.out.println("Enter timestamp in UNIX format:");
                 unixT = sc.nextLong();
-                x.decrypt(f, arr[0], arr[2], arr[1], puzzGrid, unixT);
+                x.decrypt("./binary1.crypt", arr[0], arr[2], arr[1], puzzGrid, unixT);
                 break;
             case 5:
                 //TBD
