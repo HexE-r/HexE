@@ -151,43 +151,18 @@ public class AudioProcess {
         return grid;
     }
 
-    public int[][] gridTaker(PuzzleGrid grid) {
-        String GRID = grid.toString();
+    public int[][] gridTaker(int n, int k) {
         int[][] puzzle = new int[81][81];
-        int a=0, b=0;
-        int n=GRID.length();
-
-        for(int i=0;i<n;i++)
-        {
-            if(GRID.charAt(i)=='\n')
-            {
-                a++;
-                b=0;
-                //System.out.print(" ");
-                continue;
-            }
-            int x = (int) GRID.charAt(i) - 48;
-            if(x!=-16) {
-                puzzle[a][b] = (int) GRID.charAt(i) - 48;
-                //System.out.print(puzzle[a][b]);
-                b++;
-            }
-        }
-        puzzle[a][b] = (int) GRID.charAt(n-2) - 48;
-        for(int i=0;i<9;i++) {
-            for(int j=0;j<9;j++) {
-                System.out.print(puzzle[i][j]);
-            }
-            System.out.println();
-        }
+        SuDoKu y = new SuDoKu(n, k);
+        puzzle = y.gridGen(n, k);
         return puzzle;
     }
 
-    public void gridToFile(int[][] grid) {
+    public void gridToFile(int[][] grid, int n) {
         try {
             PrintWriter writer = new PrintWriter(new File("puzzGrid.txt"));
-            for(int i=0; i<9; i++) {
-                for(int j=0; j<9; j++) {
+            for(int i=0; i<n; i++) {
+                for(int j=0; j<n; j++) {
                     writer.print(grid[i][j]);
                     writer.print(" ");
                 }
@@ -203,7 +178,7 @@ public class AudioProcess {
     }
 
     public int[][] gridReader(String f) throws IOException {
-        int[][] GRID = new int[9][9];
+        int[][] GRID = new int[81][81];
         Path file = Paths.get(f);
         Scanner scan = new Scanner(file);
         ArrayList<ArrayList<Integer>> a = new ArrayList<ArrayList<Integer>>();
@@ -229,18 +204,12 @@ public class AudioProcess {
             y=0;
         }
         
-        for(int i=0;i<9;i++) {
-            for(int j=0;j<9;j++) {
-                System.out.print(GRID[i][j]);
-            }
-            System.out.println();
-        }
         scan.close();
         System.out.println("File import successful");
         return GRID;
     }
 
-    public int[][] keyGen(int[][] grid, int n) {
+    public int[][] keyGen(int[][] grid, int n, int k) {
         int[][] miniGrid = new int[n][n];
         long unixTime = System.currentTimeMillis()/1000L;
         System.out.println("UNIX Timestamp: " + unixTime);
@@ -253,11 +222,14 @@ public class AudioProcess {
             unixTime /= 10;
         }
         //Random rand = new Random();
-        int t = p % 9;
-        int u = p % 3;
-        int u1 = (int) d1 % 3;
+        int t = p % n;
+        if(t==0) {
+            t++;
+        }
+        int u = p % k;
+        int u1 = (int) d1 % k;
         int grd = 0;
-        System.out.print("t: "+ t +" u: "+u+" u1: "+u1+"\n");
+        //System.out.print("t: "+ t +" u: "+u+" u1: "+u1+"\n");
         if(u == 0 && u1 == 0)
         {
             grd = 1;
@@ -410,7 +382,7 @@ public class AudioProcess {
         return miniGrid;
     }
 
-    public int[][] keyGenDec(int[][] grid, int n, long unixT) {
+    public int[][] keyGenDec(int[][] grid, int n, int k, long unixT) {
         int[][] miniGrid = new int[n][n];
         long unixTime = unixT;
         System.out.println("UNIX Timestamp: " + unixTime);
@@ -423,11 +395,14 @@ public class AudioProcess {
             unixTime /= 10;
         }
         //Random rand = new Random();
-        int t = p % 9;
-        int u = p % 3;
-        int u1 = (int) d1 % 3;
+        int t = p % n;
+        if(t==0) {
+            t++;
+        }
+        int u = p % k;
+        int u1 = (int) d1 % k;
         int grd = 0;
-        System.out.print("t: "+ t +" u: "+u+" u1: "+u1+"\n");
+        //System.out.print("t: "+ t +" u: "+u+" u1: "+u1+"\n");
         if(u == 0 && u1 == 0)
         {
             grd = 1;
@@ -580,30 +555,30 @@ public class AudioProcess {
         return miniGrid;
     }
 
-    public String keyGenBinary(int[][] grid) {
-        int[][] miniGrid = keyGen(grid, 3);
+    public String keyGenBinary(int[][] grid, int n, int k) {
+        int[][] miniGrid = keyGen(grid, n, k);
         String binKey = null;
         StringBuilder binMod = new StringBuilder();
 
-        for(int i=0;i<3;i++) {
-            for(int j=0;j<3;j++) {
-                System.out.print(miniGrid[i][j] + "\t");
+        for(int i=0;i<k;i++) {
+            for(int j=0;j<k;j++) {
+                //System.out.print(miniGrid[i][j] + "\t");
                 binMod.append(Integer.toBinaryString(miniGrid[i][j]));
             }
-            System.out.println();
+            //System.out.println();
         }
         System.out.println(binMod);
         binKey = binMod.toString();
         return binKey;
     }
-    public String keyGenBinaryDec(int[][] grid, long unixT) {
-        int[][] miniGrid = keyGenDec(grid, 3, unixT);
+    public String keyGenBinaryDec(int[][] grid, int n, int k, long unixT) {
+        int[][] miniGrid = keyGenDec(grid, n, k, unixT);
         String binKey = null;
         StringBuilder binMod = new StringBuilder();
 
-        for(int i=0;i<3;i++) {
-            for(int j=0;j<3;j++) {
-                System.out.print(miniGrid[i][j] + "\t");
+        for(int i=0;i<k;i++) {
+            for(int j=0;j<k;j++) {
+                //System.out.print(miniGrid[i][j] + "\t");
                 binMod.append(Integer.toBinaryString(miniGrid[i][j]));
             }
             //System.out.println();
@@ -613,7 +588,7 @@ public class AudioProcess {
         return binKey;
     }
 
-    public void encrypt(String f, int Channel, int SampleRate, int Val, int[][] grid) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void encrypt(String f, int Channel, int SampleRate, int Val, int[][] grid, int n, int k) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         //File file = new File(f);
         //AudioInputStream ai = AudioSystem.getAudioInputStream((InputStream) file.toPath());
         //Clip clip = AudioSystem.getClip();
@@ -629,8 +604,8 @@ public class AudioProcess {
         }
         out.flush();
         byte[] content = out.toByteArray();
-        String key = keyGenBinary(grid);
-        System.out.println(key);
+        String key = keyGenBinary(grid, n, k);
+        //System.out.println(key);
         int len = key.length();
         int j = 0;
         for(int i=40; i<content.length; i++) {
@@ -658,7 +633,7 @@ public class AudioProcess {
         }
     }
 
-    public void decrypt(String f, int Channel, int SampleRate, int Val, int[][] grid, long unixT) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void decrypt(String f, int Channel, int SampleRate, int Val, int[][] grid, long unixT, int n, int k) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         //File file = new File(f);
         //AudioInputStream ai = AudioSystem.getAudioInputStream((InputStream) file.toPath());
         //Clip clip = AudioSystem.getClip();
@@ -675,8 +650,8 @@ public class AudioProcess {
         }
         out.flush();
         byte[] content = out.toByteArray();
-        String key = keyGenBinaryDec(grid, unixT);
-        System.out.println(key);
+        String key = keyGenBinaryDec(grid, n, k, unixT);
+        //System.out.println(key);
         int len = key.length();
         int j = 0;
         for(int i=40; i<content.length; i++) {
