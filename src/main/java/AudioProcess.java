@@ -596,7 +596,6 @@ public class AudioProcess {
         binKey = binMod.toString();
         return binKey;
     }
-
     public String keyGenBinaryDec(int[][] grid, long unixT) {
         int[][] miniGrid = keyGenDec(grid, 3, unixT);
         String binKey = null;

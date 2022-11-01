@@ -16,7 +16,7 @@ public class HexE {
         System.out.println("|_||_\\___/_\\_\\___|");
         System.out.println("-----------------------------------");
         System.out.println("Enter option: ");
-        System.out.print("1. Encrypt Audio \n2. Decrypt Audio \n3. Encrypt Audio and send to IPFS \n4. Decrypt Audio from IPFS Hash \n5. Test algorithm\n");
+        System.out.print("1. Encrypt Audio \n2. Decrypt Audio \n3. Encrypt Audio and send to IPFS \n4. Decrypt Audio from IPFS Hash\n");
         int op = sc.nextInt();
         String f = null, f1 = null;
         int[] arr = new int[3];
@@ -77,9 +77,9 @@ public class HexE {
                 unixT = sc.nextLong();
                 x.decrypt("./binary1.crypt", arr[0], arr[2], arr[1], puzzGrid, unixT);
                 break;
-            case 5:
-                //TBD
-                break;
+            //case 5:
+                
+                //break;
             default:
                 System.err.println("Invalid option");
                 break;
