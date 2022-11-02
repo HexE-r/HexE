@@ -4,7 +4,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -169,10 +168,10 @@ public class AudioProcess {
                 writer.println();
             }
             writer.close();
-            System.out.println("Puzzle Grid saved under puzzGrid.txt");
+            System.out.println("\nPuzzle Grid saved under puzzGrid.txt");
         }
         catch (IOException e) {
-            System.err.println("Error occured");
+            System.err.println("\nError occured");
             e.printStackTrace();
         }
     }
@@ -185,7 +184,7 @@ public class AudioProcess {
         while(scan.hasNextLine())
         {
             Scanner colReader = new Scanner(scan.nextLine());
-            ArrayList col = new ArrayList();
+            ArrayList<Integer> col = new ArrayList<Integer>();
             while(colReader.hasNextInt())
             {
                 col.add(colReader.nextInt());
@@ -205,14 +204,14 @@ public class AudioProcess {
         }
         
         scan.close();
-        System.out.println("File import successful");
+        System.out.println("\nFile import successful");
         return GRID;
     }
 
     public int[][] keyGen(int[][] grid, int n, int k) {
         int[][] miniGrid = new int[n][n];
         long unixTime = System.currentTimeMillis()/1000L;
-        System.out.println("UNIX Timestamp: " + unixTime);
+        System.out.println("\nUNIX Timestamp: " + unixTime + "\n");
         int p = 0;
         long digit = 0;
         long d1 = unixTime % 10;
@@ -228,6 +227,16 @@ public class AudioProcess {
         }
         int u = p % k;
         int u1 = (int) d1 % k;
+        int k_pos = 0;
+        if(k == 3) {
+            k_pos = 0;
+        }
+        else if(k == 4) {
+            k_pos = 1;
+        }
+        else if(k == 5) {
+            k_pos = 4;
+        }
         int grd = 0;
         //System.out.print("t: "+ t +" u: "+u+" u1: "+u1+"\n");
         if(u == 0 && u1 == 0)
@@ -268,9 +277,9 @@ public class AudioProcess {
         int k1=0, k2=0;
         switch (grd) {
             case 1:
-                for(int i=0;i<3;i++)
+                for(int i=(0+k_pos);i<(3+k_pos);i++)
                 {
-                    for(int j=0;j<3;j++)
+                    for(int j=(0+k_pos);j<(3+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -280,9 +289,9 @@ public class AudioProcess {
                 }
                 break;
             case 2:
-                for(int i=0;i<3;i++)
+                for(int i=(0+k_pos);i<(3+k_pos);i++)
                 {
-                    for(int j=3;j<6;j++)
+                    for(int j=(3+k_pos);j<(6+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -292,9 +301,9 @@ public class AudioProcess {
                 }
                 break;
             case 3:
-                for(int i=0;i<3;i++)
+                for(int i=(0+k_pos);i<(3+k_pos);i++)
                 {
-                    for(int j=6;j<9;j++)
+                    for(int j=(6+k_pos);j<(9+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -304,9 +313,9 @@ public class AudioProcess {
                 }
                 break;
             case 4:
-                for(int i=3;i<6;i++)
+                for(int i=(3+k_pos);i<(6+k_pos);i++)
                 {
-                    for(int j=0;j<3;j++)
+                    for(int j=(0+k_pos);j<(3+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -316,9 +325,9 @@ public class AudioProcess {
                 }
                 break;
             case 5:
-                for(int i=3;i<6;i++)
+                for(int i=(3+k_pos);i<(6+k_pos);i++)
                 {
-                    for(int j=3;j<6;j++)
+                    for(int j=(3+k_pos);j<(6+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -328,9 +337,9 @@ public class AudioProcess {
                 }
                 break;
             case 6:
-                for(int i=3;i<6;i++)
+                for(int i=(3+k_pos);i<(6+k_pos);i++)
                 {
-                    for(int j=6;j<9;j++)
+                    for(int j=6+(k_pos);j<(9+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -340,9 +349,9 @@ public class AudioProcess {
                 }
                 break;
             case 7:
-                for(int i=6;i<9;i++)
+                for(int i=(6+k_pos);i<(9+k_pos);i++)
                 {
-                    for(int j=0;j<3;j++)
+                    for(int j=(0+k_pos);j<(3+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -352,9 +361,9 @@ public class AudioProcess {
                 }
                 break;
             case 8:
-                for(int i=6;i<9;i++)
+                for(int i=(6+k_pos);i<(9+k_pos);i++)
                 {
-                    for(int j=3;j<6;j++)
+                    for(int j=(3+k_pos);j<(6+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -364,9 +373,9 @@ public class AudioProcess {
                 }
                 break;
             case 9:
-                for(int i=6;i<9;i++)
+                for(int i=(6+k_pos);i<(9+k_pos);i++)
                 {
-                    for(int j=6;j<9;j++)
+                    for(int j=(6+k_pos);j<(9+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -385,7 +394,7 @@ public class AudioProcess {
     public int[][] keyGenDec(int[][] grid, int n, int k, long unixT) {
         int[][] miniGrid = new int[n][n];
         long unixTime = unixT;
-        System.out.println("UNIX Timestamp: " + unixTime);
+        System.out.println("\nUNIX Timestamp: " + unixTime + "\n");
         int p = 0;
         long digit = 0;
         long d1 = unixTime % 10;
@@ -402,6 +411,16 @@ public class AudioProcess {
         int u = p % k;
         int u1 = (int) d1 % k;
         int grd = 0;
+        int k_pos = 0;
+        if(k == 3) {
+            k_pos = 0;
+        }
+        else if(k == 4) {
+            k_pos = 1;
+        }
+        else if(k == 5) {
+            k_pos = 4;
+        }
         //System.out.print("t: "+ t +" u: "+u+" u1: "+u1+"\n");
         if(u == 0 && u1 == 0)
         {
@@ -441,9 +460,9 @@ public class AudioProcess {
         int k1=0, k2=0;
         switch (grd) {
             case 1:
-                for(int i=0;i<3;i++)
+                for(int i=(0+k_pos);i<(3+k_pos);i++)
                 {
-                    for(int j=0;j<3;j++)
+                    for(int j=(0+k_pos);j<(3+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -453,9 +472,9 @@ public class AudioProcess {
                 }
                 break;
             case 2:
-                for(int i=0;i<3;i++)
+                for(int i=(0+k_pos);i<(3+k_pos);i++)
                 {
-                    for(int j=3;j<6;j++)
+                    for(int j=(3+k_pos);j<(6+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -465,9 +484,9 @@ public class AudioProcess {
                 }
                 break;
             case 3:
-                for(int i=0;i<3;i++)
+                for(int i=(0+k_pos);i<(3+k_pos);i++)
                 {
-                    for(int j=6;j<9;j++)
+                    for(int j=(6+k_pos);j<(9+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -477,9 +496,9 @@ public class AudioProcess {
                 }
                 break;
             case 4:
-                for(int i=3;i<6;i++)
+                for(int i=(3+k_pos);i<(6+k_pos);i++)
                 {
-                    for(int j=0;j<3;j++)
+                    for(int j=(0+k_pos);j<(3+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -489,9 +508,9 @@ public class AudioProcess {
                 }
                 break;
             case 5:
-                for(int i=3;i<6;i++)
+                for(int i=(3+k_pos);i<(6+k_pos);i++)
                 {
-                    for(int j=3;j<6;j++)
+                    for(int j=(3+k_pos);j<(6+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -501,9 +520,9 @@ public class AudioProcess {
                 }
                 break;
             case 6:
-                for(int i=3;i<6;i++)
+                for(int i=(3+k_pos);i<(6+k_pos);i++)
                 {
-                    for(int j=6;j<9;j++)
+                    for(int j=6+(k_pos);j<(9+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -513,9 +532,9 @@ public class AudioProcess {
                 }
                 break;
             case 7:
-                for(int i=6;i<9;i++)
+                for(int i=(6+k_pos);i<(9+k_pos);i++)
                 {
-                    for(int j=0;j<3;j++)
+                    for(int j=(0+k_pos);j<(3+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -525,9 +544,9 @@ public class AudioProcess {
                 }
                 break;
             case 8:
-                for(int i=6;i<9;i++)
+                for(int i=(6+k_pos);i<(9+k_pos);i++)
                 {
-                    for(int j=3;j<6;j++)
+                    for(int j=(3+k_pos);j<(6+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -537,9 +556,9 @@ public class AudioProcess {
                 }
                 break;
             case 9:
-                for(int i=6;i<9;i++)
+                for(int i=(6+k_pos);i<(9+k_pos);i++)
                 {
-                    for(int j=6;j<9;j++)
+                    for(int j=(6+k_pos);j<(9+k_pos);j++)
                     {
                         miniGrid[k1][k2] = grid[i][j] * t;
                         k2++;
@@ -560,12 +579,12 @@ public class AudioProcess {
         String binKey = null;
         StringBuilder binMod = new StringBuilder();
 
-        for(int i=0;i<k;i++) {
-            for(int j=0;j<k;j++) {
-                //System.out.print(miniGrid[i][j] + "\t");
+        for(int i=0;i<3;i++) {
+            for(int j=0;j<3;j++) {
+                System.out.print(miniGrid[i][j] + "\t");
                 binMod.append(Integer.toBinaryString(miniGrid[i][j]));
             }
-            //System.out.println();
+            System.out.println();
         }
         System.out.println(binMod);
         binKey = binMod.toString();
@@ -576,12 +595,12 @@ public class AudioProcess {
         String binKey = null;
         StringBuilder binMod = new StringBuilder();
 
-        for(int i=0;i<k;i++) {
-            for(int j=0;j<k;j++) {
-                //System.out.print(miniGrid[i][j] + "\t");
+        for(int i=0;i<3;i++) {
+            for(int j=0;j<3;j++) {
+                System.out.print(miniGrid[i][j] + "\t");
                 binMod.append(Integer.toBinaryString(miniGrid[i][j]));
             }
-            //System.out.println();
+            System.out.println();
         }
         System.out.println(binMod);
         binKey = binMod.toString();
@@ -631,6 +650,7 @@ public class AudioProcess {
         catch (Exception e) {
             e.printStackTrace();
         }
+        in.close();
     }
 
     public void decrypt(String f, int Channel, int SampleRate, int Val, int[][] grid, long unixT, int n, int k) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
@@ -676,6 +696,7 @@ public class AudioProcess {
         catch (Exception e) {
             e.printStackTrace();
         }
+        in.close();
     }
 
     public void audioWrite(String f) {
