@@ -4,7 +4,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class AudioProcess {
@@ -137,17 +136,6 @@ public class AudioProcess {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public PuzzleGrid puzzleGenerator() {
-        Solver solv = new Solver();
-        PuzzleGen pgen = new PuzzleGen();
-        // PuzzleGrid grid = new PuzzleGrid();
-        Random r = new Random();
-        int n = r.nextInt(60);
-        PuzzleGrid grid = pgen.generate(n);
-        solv.solve(grid);
-        return grid;
     }
 
     public int[][] gridTaker(int n, int k) {

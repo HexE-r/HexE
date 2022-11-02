@@ -11,7 +11,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/TarsosDSP-2.4.jar!/" />
@@ -22,6 +22,16 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="Maven: org.apache.maven.plugins:maven-compiler-plugin:3.10.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.shared:maven-shared-utils:3.3.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.shared:maven-shared-incremental:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-component-annotations:1.5.5" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-java:1.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.ow2.asm:asm:9.2" level="project" />
+    <orderEntry type="library" name="Maven: com.thoughtworks.qdox:qdox:2.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-compiler-api:2.10.0" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-compiler-manager:2.10.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.codehaus.plexus:plexus-compiler-javac:2.10.0" level="project" />
     <orderEntry type="library" name="Maven: io.github.zinebfadili:pinata-java-sdk:2.1.0" level="project" />
     <orderEntry type="library" name="Maven: com.github.ipld:java-cid:v1.3.1" level="project" />
     <orderEntry type="library" name="Maven: com.github.multiformats:java-multihash:v1.3.0" level="project" />
@@ -38,5 +48,17 @@
     <orderEntry type="library" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.10" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.plugins:maven-jar-plugin:3.3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.shared:file-management:3.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.36" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-archiver:3.6.0" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-io:3.4.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-archiver:4.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.21" level="project" />
+    <orderEntry type="library" name="Maven: org.iq80.snappy:snappy:0.4" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.tukaani:xz:1.9" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-interpolation:1.26" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-utils:3.4.2" level="project" />
   </component>
 </module>
