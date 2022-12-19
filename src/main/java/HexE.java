@@ -155,7 +155,7 @@ public class HexE {
             int op = Integer.parseInt(args[1]);
             String f = null, f1 = null;
             int[] arr = new int[3];
-            long unixT = 0, t1 = 0, t2 = 0;
+            long unixT = 0;
             // PuzzleGrid grid;
             int[][] puzzGrid = new int[81][81];
             switch (op) {
