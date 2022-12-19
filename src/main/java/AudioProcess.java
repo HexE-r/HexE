@@ -88,7 +88,7 @@ public class AudioProcess {
         return metadata;
     }
 
-    public void audioToByte(String f) {
+    public void audioToByte(String f, String f1) {
         try {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             BufferedInputStream in = new BufferedInputStream(new FileInputStream(f));
@@ -101,32 +101,7 @@ public class AudioProcess {
             }
             out.flush();
             byte[] audioBytes = out.toByteArray();
-            File file = new File("./binary.crypt");
-            OutputStream os = new FileOutputStream(file);
-            os.write(audioBytes);
-            os.close();
-            in.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void audioToByteDec(String f) {
-        try {
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            BufferedInputStream in = new BufferedInputStream(new FileInputStream(f));
-
-            int read;
-            byte[] buff = new byte[1024];
-            while ((read = in.read(buff)) > 0)
-            {
-                out.write(buff, 0, read);
-            }
-            out.flush();
-            byte[] audioBytes = out.toByteArray();
-            File file = new File("./binary1.crypt");
+            File file = new File(f1);
             OutputStream os = new FileOutputStream(file);
             os.write(audioBytes);
             os.close();
@@ -623,7 +598,14 @@ public class AudioProcess {
             char c = key.charAt(j);
             int keyVal = c - '0';
             //System.out.print(keyVal);
-            content[i] = (byte) (content[i] ^ (keyVal*5000));
+            if(i==40)
+            {
+                content[i] = (byte) (content[i] ^ (keyVal*5000));
+            }
+            else {
+                content[i] = (byte) (content[i] ^ (keyVal*5000));
+                content[i] = (byte) (content[i] + 42);
+            }
             if(i%10 == 0)
             {
                 j++;
@@ -669,7 +651,14 @@ public class AudioProcess {
             }
             char c = key.charAt(j);
             int keyVal = c - '0';
-            content[i] = (byte) (content[i] ^ (keyVal*5000));
+            if(i==40)
+            {
+                content[i] = (byte) (content[i] ^ (keyVal*5000));
+            }
+            else {
+                content[i] = (byte) (content[i] - 42);
+                content[i] = (byte) (content[i] ^ (keyVal*5000));
+            }
             if(i%10 == 0)
             {
                 j++;

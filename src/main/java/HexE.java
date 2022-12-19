@@ -16,7 +16,7 @@ public class HexE {
         System.out.println("| __ / -_) \\ / _|"); 
         System.out.println("|_||_\\___/_\\_\\___|");
         System.out.println("-----------------------------------");
-        System.out.println("Enter key strength (9/16/25)");
+        System.out.println("Enter SuDoKu level (9/16/25)");
         int n = sc.nextInt();
         int k = 0;
         if(n == 9) {
@@ -42,25 +42,27 @@ public class HexE {
                 f = sc.next();
                 x.audioFrames(f);
                 arr = x.audioRead(f);
-                //x.audioToByte(f);
+                x.audioToByte(f, "fileOrg.txt");
                 //grid = x.puzzleGenerator();
                 puzzGrid = x.gridTaker(n,20);
                 x.gridToFile(puzzGrid, n);
                 x.encrypt(f, arr[0], arr[2], arr[1], puzzGrid, n, k);
                 System.out.println("Audio encrypted successfully");
+                x.audioToByte("test1.wav", "fileEnc.txt");
                 break;
             case 2:
                 System.out.println("Enter file path of audio:");
                 f = sc.next();
                 x.audioFrames(f);
                 arr = x.audioRead(f);
-                //x.audioToByteDec(f);
+                x.audioToByte(f, "fileOrg1.txt");
                 System.out.println("Enter file path for puzzle:");
                 f1 = sc.next();
                 puzzGrid = x.gridReader(f1);
                 System.out.println("Enter timestamp in UNIX format:");
                 unixT = sc.nextLong();
                 x.decrypt(f, arr[0], arr[2], arr[1], puzzGrid, unixT, n, k);
+                x.audioToByte("test2.wav", "fileDec.txt");
                 break;
             case 3:
                 System.out.println("Enter file path of audio:");
