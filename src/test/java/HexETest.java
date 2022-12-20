@@ -63,4 +63,58 @@ public class HexETest {
         //HexE x = new HexE();
         HexE.main(args);
     }
+
+    @DisplayName("Test 7")
+    @Test
+    public void testMainDec() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        System.out.println("main");
+        String[] args = {"9", "2", "src/test/files/raw/file1.wav", "puzzGrid.txt", "1010101010"};
+        //HexE x = new HexE();
+        HexE.main(args);
+    }
+
+    @DisplayName("Test 2")
+    @Test
+    public void testMainDec2() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        System.out.println("main");
+        String[] args = {"16", "2", "src/test/files/raw/file1.wav", "puzzGrid.txt", "1010101010"};
+        //HexE x = new HexE();
+        HexE.main(args);
+    }
+
+    @DisplayName("Test 3")
+    @Test
+    public void testMainDec3() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        System.out.println("main");
+        String[] args = {"16", "2", "src/test/files/raw/file2.wav", "puzzGrid.txt", "1010101010"};
+        //HexE x = new HexE();
+        HexE.main(args);
+    }
+
+    @DisplayName("Test 4")
+    @Test
+    public void testMainDec4() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        System.out.println("main");
+        String[] args = {"9", "1", "src/test/files/raw/file2.wav", "puzzGrid.txt", "1010101010"};
+        //HexE x = new HexE();
+        HexE.main(args);
+    }
+
+    @DisplayName("Repeated Test")
+    @RepeatedTest(10)
+    public void testMainDecRepeat() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        System.out.println("main");
+        String[] args = {"9", "2", "test.wav", "puzzGrid.txt", "1010101010"};
+        //HexE x = new HexE();
+        HexE.main(args);
+    }
+
+    @DisplayName("Repeated Test var 16")
+    @RepeatedTest(10)
+    public void testMainDecRepeat16() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        System.out.println("main");
+        String[] args = {"16", "2", "test.wav", "puzzGrid.txt", "1010101010"};
+        //HexE x = new HexE();
+        HexE.main(args);
+    }
 }
