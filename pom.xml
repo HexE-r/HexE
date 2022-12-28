@@ -6,7 +6,7 @@
 
   <groupId>org.kitevx</groupId>
   <artifactId>HexE</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.2</version>
   <properties>
     <maven.compiler.source>16</maven.compiler.source>
     <maven.compiler.target>16</maven.compiler.target>
@@ -32,7 +32,7 @@
   <distributionManagement>
     <repository>
       <uniqueVersion>false</uniqueVersion>
-      <id>HexE</id>
+      <id>github</id>
       <name>GitHub Repository</name>
       <url>https://maven.pkg.github.com/KiteVX/HexE</url>
       <layout>default</layout>
