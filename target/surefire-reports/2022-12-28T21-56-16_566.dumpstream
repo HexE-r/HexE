@@ -1,0 +1,4 @@
+# Created at 2022-12-28T21:56:21.892
+Boot Manifest-JAR contains absolute paths in classpath 'D:\XCodes\HexE\HexE\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+

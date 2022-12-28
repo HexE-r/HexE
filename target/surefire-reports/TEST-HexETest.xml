@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="HexETest" time="18.578" tests="48" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="16"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="D:\XCodes\HexE\HexE\target\test-classes;D:\XCodes\HexE\HexE\target\classes;C:\Users\Aadhitya\.m2\repository\org\apache\maven\plugins\maven-compiler-plugin\3.10.0\maven-compiler-plugin-3.10.0.jar;C:\Users\Aadhitya\.m2\repository\org\apache\maven\shared\maven-shared-utils\3.3.4\maven-shared-utils-3.3.4.jar;C:\Users\Aadhitya\.m2\repository\org\apache\maven\shared\maven-shared-incremental\1.1\maven-shared-incremental-1.1.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-component-annotations\1.5.5\plexus-component-annotations-1.5.5.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-java\1.1.1\plexus-java-1.1.1.jar;C:\Users\Aadhitya\.m2\repository\org\ow2\asm\asm\9.2\asm-9.2.jar;C:\Users\Aadhitya\.m2\repository\com\thoughtworks\qdox\qdox\2.0.1\qdox-2.0.1.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-compiler-api\2.10.0\plexus-compiler-api-2.10.0.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-compiler-manager\2.10.0\plexus-compiler-manager-2.10.0.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-compiler-javac\2.10.0\plexus-compiler-javac-2.10.0.jar;C:\Users\Aadhitya\.m2\repository\io\github\zinebfadili\pinata-java-sdk\2.1.0\pinata-java-sdk-2.1.0.jar;C:\Users\Aadhitya\.m2\repository\com\github\ipld\java-cid\v1.3.1\java-cid-v1.3.1.jar;C:\Users\Aadhitya\.m2\repository\com\github\multiformats\java-multihash\v1.3.0\java-multihash-v1.3.0.jar;C:\Users\Aadhitya\.m2\repository\com\github\multiformats\java-multibase\v1.1.0\java-multibase-v1.1.0.jar;C:\Users\Aadhitya\.m2\repository\org\json\json\20180130\json-20180130.jar;C:\Users\Aadhitya\.m2\repository\com\squareup\okhttp3\okhttp\4.9.1\okhttp-4.9.1.jar;C:\Users\Aadhitya\.m2\repository\com\squareup\okio\okio\2.8.0\okio-2.8.0.jar;C:\Users\Aadhitya\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-common\1.4.0\kotlin-stdlib-common-1.4.0.jar;C:\Users\Aadhitya\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib\1.4.10\kotlin-stdlib-1.4.10.jar;C:\Users\Aadhitya\.m2\repository\org\jetbrains\annotations\13.0\annotations-13.0.jar;C:\Users\Aadhitya\.m2\repository\org\apache\commons\commons-lang3\3.11\commons-lang3-3.11.jar;C:\Users\Aadhitya\.m2\repository\commons-io\commons-io\2.6\commons-io-2.6.jar;C:\Users\Aadhitya\.m2\repository\com\github\multiformats\java-multiaddr\1.4.1\java-multiaddr-1.4.1.jar;C:\Users\Aadhitya\.m2\repository\com\googlecode\json-simple\json-simple\1.1.1\json-simple-1.1.1.jar;C:\Users\Aadhitya\.m2\repository\junit\junit\4.10\junit-4.10.jar;C:\Users\Aadhitya\.m2\repository\org\hamcrest\hamcrest-core\1.1\hamcrest-core-1.1.jar;C:\Users\Aadhitya\.m2\repository\org\apache\maven\plugins\maven-jar-plugin\3.3.0\maven-jar-plugin-3.3.0.jar;C:\Users\Aadhitya\.m2\repository\org\apache\maven\shared\file-management\3.1.0\file-management-3.1.0.jar;C:\Users\Aadhitya\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\Aadhitya\.m2\repository\org\apache\maven\maven-archiver\3.6.0\maven-archiver-3.6.0.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-io\3.4.0\plexus-io-3.4.0.jar;C:\Users\Aadhitya\.m2\repository\javax\inject\javax.inject\1\javax.inject-1.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-archiver\4.4.0\plexus-archiver-4.4.0.jar;C:\Users\Aadhitya\.m2\repository\org\apache\commons\commons-compress\1.21\commons-compress-1.21.jar;C:\Users\Aadhitya\.m2\repository\org\iq80\snappy\snappy\0.4\snappy-0.4.jar;C:\Users\Aadhitya\.m2\repository\org\tukaani\xz\1.9\xz-1.9.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-interpolation\1.26\plexus-interpolation-1.26.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-utils\3.4.2\plexus-utils-3.4.2.jar;C:\Users\Aadhitya\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.1\junit-jupiter-engine-5.9.1.jar;C:\Users\Aadhitya\.m2\repository\org\junit\platform\junit-platform-engine\1.9.1\junit-platform-engine-1.9.1.jar;C:\Users\Aadhitya\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Aadhitya\.m2\repository\org\junit\platform\junit-platform-commons\1.9.1\junit-platform-commons-1.9.1.jar;C:\Users\Aadhitya\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.1\junit-jupiter-api-5.9.1.jar;C:\Users\Aadhitya\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Asia/Calcutta"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="16"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-16.0.2\bin"/>
+    <property name="sun.java.command" value="C:\Users\Aadhitya\AppData\Local\Temp\surefire1501253139376340918\surefirebooter12989157511395745101.jar C:\Users\Aadhitya\AppData\Local\Temp\surefire1501253139376340918 2022-12-28T21-56-16_566-jvmRun1 surefire5771813205147921216tmp surefire_04136067969331661318tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="D:\XCodes\HexE\HexE\target\test-classes;D:\XCodes\HexE\HexE\target\classes;C:\Users\Aadhitya\.m2\repository\org\apache\maven\plugins\maven-compiler-plugin\3.10.0\maven-compiler-plugin-3.10.0.jar;C:\Users\Aadhitya\.m2\repository\org\apache\maven\shared\maven-shared-utils\3.3.4\maven-shared-utils-3.3.4.jar;C:\Users\Aadhitya\.m2\repository\org\apache\maven\shared\maven-shared-incremental\1.1\maven-shared-incremental-1.1.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-component-annotations\1.5.5\plexus-component-annotations-1.5.5.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-java\1.1.1\plexus-java-1.1.1.jar;C:\Users\Aadhitya\.m2\repository\org\ow2\asm\asm\9.2\asm-9.2.jar;C:\Users\Aadhitya\.m2\repository\com\thoughtworks\qdox\qdox\2.0.1\qdox-2.0.1.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-compiler-api\2.10.0\plexus-compiler-api-2.10.0.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-compiler-manager\2.10.0\plexus-compiler-manager-2.10.0.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-compiler-javac\2.10.0\plexus-compiler-javac-2.10.0.jar;C:\Users\Aadhitya\.m2\repository\io\github\zinebfadili\pinata-java-sdk\2.1.0\pinata-java-sdk-2.1.0.jar;C:\Users\Aadhitya\.m2\repository\com\github\ipld\java-cid\v1.3.1\java-cid-v1.3.1.jar;C:\Users\Aadhitya\.m2\repository\com\github\multiformats\java-multihash\v1.3.0\java-multihash-v1.3.0.jar;C:\Users\Aadhitya\.m2\repository\com\github\multiformats\java-multibase\v1.1.0\java-multibase-v1.1.0.jar;C:\Users\Aadhitya\.m2\repository\org\json\json\20180130\json-20180130.jar;C:\Users\Aadhitya\.m2\repository\com\squareup\okhttp3\okhttp\4.9.1\okhttp-4.9.1.jar;C:\Users\Aadhitya\.m2\repository\com\squareup\okio\okio\2.8.0\okio-2.8.0.jar;C:\Users\Aadhitya\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-common\1.4.0\kotlin-stdlib-common-1.4.0.jar;C:\Users\Aadhitya\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib\1.4.10\kotlin-stdlib-1.4.10.jar;C:\Users\Aadhitya\.m2\repository\org\jetbrains\annotations\13.0\annotations-13.0.jar;C:\Users\Aadhitya\.m2\repository\org\apache\commons\commons-lang3\3.11\commons-lang3-3.11.jar;C:\Users\Aadhitya\.m2\repository\commons-io\commons-io\2.6\commons-io-2.6.jar;C:\Users\Aadhitya\.m2\repository\com\github\multiformats\java-multiaddr\1.4.1\java-multiaddr-1.4.1.jar;C:\Users\Aadhitya\.m2\repository\com\googlecode\json-simple\json-simple\1.1.1\json-simple-1.1.1.jar;C:\Users\Aadhitya\.m2\repository\junit\junit\4.10\junit-4.10.jar;C:\Users\Aadhitya\.m2\repository\org\hamcrest\hamcrest-core\1.1\hamcrest-core-1.1.jar;C:\Users\Aadhitya\.m2\repository\org\apache\maven\plugins\maven-jar-plugin\3.3.0\maven-jar-plugin-3.3.0.jar;C:\Users\Aadhitya\.m2\repository\org\apache\maven\shared\file-management\3.1.0\file-management-3.1.0.jar;C:\Users\Aadhitya\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\Aadhitya\.m2\repository\org\apache\maven\maven-archiver\3.6.0\maven-archiver-3.6.0.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-io\3.4.0\plexus-io-3.4.0.jar;C:\Users\Aadhitya\.m2\repository\javax\inject\javax.inject\1\javax.inject-1.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-archiver\4.4.0\plexus-archiver-4.4.0.jar;C:\Users\Aadhitya\.m2\repository\org\apache\commons\commons-compress\1.21\commons-compress-1.21.jar;C:\Users\Aadhitya\.m2\repository\org\iq80\snappy\snappy\0.4\snappy-0.4.jar;C:\Users\Aadhitya\.m2\repository\org\tukaani\xz\1.9\xz-1.9.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-interpolation\1.26\plexus-interpolation-1.26.jar;C:\Users\Aadhitya\.m2\repository\org\codehaus\plexus\plexus-utils\3.4.2\plexus-utils-3.4.2.jar;C:\Users\Aadhitya\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.1\junit-jupiter-engine-5.9.1.jar;C:\Users\Aadhitya\.m2\repository\org\junit\platform\junit-platform-engine\1.9.1\junit-platform-engine-1.9.1.jar;C:\Users\Aadhitya\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Aadhitya\.m2\repository\org\junit\platform\junit-platform-commons\1.9.1\junit-platform-commons-1.9.1.jar;C:\Users\Aadhitya\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.1\junit-jupiter-api-5.9.1.jar;C:\Users\Aadhitya\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\Aadhitya"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2021-07-20"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-16.0.2"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="D:\XCodes\HexE\HexE"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\Aadhitya\AppData\Local\Temp\surefire1501253139376340918\surefirebooter12989157511395745101.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="16.0.2+7-67"/>
+    <property name="user.name" value="Aadhitya"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\Aadhitya\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\Aadhitya\AppData\Local\Temp\"/>
+    <property name="java.version" value="16.0.2"/>
+    <property name="user.dir" value="D:\XCodes\HexE\HexE"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-16.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;D:\Program Files\VMware\bin\;C:\Program Files\Java\jdk-16.0.2\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\ProgramData\Oracle\Java\javapath;C:\windows\System32\OpenSSH\;C:\Program Files (x86)\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\Program Files\Kubernetes\kind;C:\Program Files\dotnet\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Users\Aadhitya\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\Aadhitya\AppData\Local\Programs\Python\Python310\;C:\Users\Aadhitya\scoop\shims;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Aadhitya\AppData\Local\Microsoft\WindowsApps;C:\Users\Aadhitya\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Java\jdk-16.0.2\bin;C:\mingw64\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2020.2\bin;C:\Program Files (x86)\GitHub CLI\;C:\Users\Aadhitya\go\bin;D:\Personal\php-8.1.8;C:\Program Files (x86)\Vim\vim82;D:\HashiCorp\terraform_1.0.1_windows_amd64;C:\Program Files\OpenSSL-Win64\bin;D:\Program Files\heroku\bin;D:\Program Files\JetBrains\IntelliJ IDEA\IntelliJ IDEA 2021.2.2\bin;;D:\Program Files\Apache\Maven\apache-maven-3.8.3\bin;C:\Users\Aadhitya\AppData\Local\Programs\Hyper\resources\bin;C:\Users\Aadhitya\AppData\Local\Programs\MiKTeX\miktex\bin\x64\;D:\Program Files\LLVM\bin;C:\Users\Aadhitya\AppData\Local\Programs\mongosh\;D:\Hadoop\hadoop-3.2.3-src\bin;C:\Users\Aadhitya\AppData\Local\Microsoft\WindowsApps;D:\Program Files\Kubo\kubo;C:\Users\Aadhitya\AppData\Roaming\npm;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="16.0.2+7-67"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="60.0"/>
+  </properties>
+  <testcase name="testMain2" classname="HexETest" time="0.998"/>
+  <testcase name="testMain3" classname="HexETest" time="3.187"/>
+  <testcase name="testMain4" classname="HexETest" time="1.211"/>
+  <testcase name="testMain" classname="HexETest" time="0.583"/>
+  <testcase name="testMainRepeat16[1]" classname="HexETest" time="0.288"/>
+  <testcase name="testMainRepeat16[2]" classname="HexETest" time="0.049"/>
+  <testcase name="testMainRepeat16[3]" classname="HexETest" time="0.104"/>
+  <testcase name="testMainRepeat16[4]" classname="HexETest" time="0.092"/>
+  <testcase name="testMainRepeat16[5]" classname="HexETest" time="0.057"/>
+  <testcase name="testMainRepeat16[6]" classname="HexETest" time="0.045"/>
+  <testcase name="testMainRepeat16[7]" classname="HexETest" time="0.045"/>
+  <testcase name="testMainRepeat16[8]" classname="HexETest" time="0.043"/>
+  <testcase name="testMainRepeat16[9]" classname="HexETest" time="0.037"/>
+  <testcase name="testMainRepeat16[10]" classname="HexETest" time="0.036"/>
+  <testcase name="testMainRepeat[1]" classname="HexETest" time="0.034"/>
+  <testcase name="testMainRepeat[2]" classname="HexETest" time="0.041"/>
+  <testcase name="testMainRepeat[3]" classname="HexETest" time="0.038"/>
+  <testcase name="testMainRepeat[4]" classname="HexETest" time="0.046"/>
+  <testcase name="testMainRepeat[5]" classname="HexETest" time="0.034"/>
+  <testcase name="testMainRepeat[6]" classname="HexETest" time="0.033"/>
+  <testcase name="testMainRepeat[7]" classname="HexETest" time="0.036"/>
+  <testcase name="testMainRepeat[8]" classname="HexETest" time="0.044"/>
+  <testcase name="testMainRepeat[9]" classname="HexETest" time="0.034"/>
+  <testcase name="testMainRepeat[10]" classname="HexETest" time="0.034"/>
+  <testcase name="testMainDec" classname="HexETest" time="0.683"/>
+  <testcase name="testMainDecRepeat16[1]" classname="HexETest" time="1.569"/>
+  <testcase name="testMainDecRepeat16[2]" classname="HexETest" time="0.053"/>
+  <testcase name="testMainDecRepeat16[3]" classname="HexETest" time="0.06"/>
+  <testcase name="testMainDecRepeat16[4]" classname="HexETest" time="0.111"/>
+  <testcase name="testMainDecRepeat16[5]" classname="HexETest" time="0.053"/>
+  <testcase name="testMainDecRepeat16[6]" classname="HexETest" time="0.055"/>
+  <testcase name="testMainDecRepeat16[7]" classname="HexETest" time="0.054"/>
+  <testcase name="testMainDecRepeat16[8]" classname="HexETest" time="0.056"/>
+  <testcase name="testMainDecRepeat16[9]" classname="HexETest" time="0.051"/>
+  <testcase name="testMainDecRepeat16[10]" classname="HexETest" time="0.058"/>
+  <testcase name="testMainDec2" classname="HexETest" time="1.927"/>
+  <testcase name="testMainDec3" classname="HexETest" time="2.182"/>
+  <testcase name="testMainDec4" classname="HexETest" time="3.963"/>
+  <testcase name="testMainDecRepeat[1]" classname="HexETest" time="0.065"/>
+  <testcase name="testMainDecRepeat[2]" classname="HexETest" time="0.046"/>
+  <testcase name="testMainDecRepeat[3]" classname="HexETest" time="0.054"/>
+  <testcase name="testMainDecRepeat[4]" classname="HexETest" time="0.056"/>
+  <testcase name="testMainDecRepeat[5]" classname="HexETest" time="0.05"/>
+  <testcase name="testMainDecRepeat[6]" classname="HexETest" time="0.049"/>
+  <testcase name="testMainDecRepeat[7]" classname="HexETest" time="0.037"/>
+  <testcase name="testMainDecRepeat[8]" classname="HexETest" time="0.037"/>
+  <testcase name="testMainDecRepeat[9]" classname="HexETest" time="0.042"/>
+  <testcase name="testMainDecRepeat[10]" classname="HexETest" time="0.029"/>
+</testsuite>
